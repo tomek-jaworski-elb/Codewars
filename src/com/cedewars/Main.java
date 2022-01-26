@@ -6,28 +6,20 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        System.out.println(sortDesc(423));
-
+        System.out.println(isIsogram("Dermatoglyphics"));
+        System.out.println(isIsogram("aba"));
+        System.out.println(isIsogram("moOse"));
     }
-    public static int sortDesc(final int num) {
-        //Your code
-        int result=0;
-        String tmp = Integer.toString(num);
-        int [] ints = new int[tmp.length()];
-        for (int i=0;i<tmp.length();i++) {
-            ints[i] = Character.getNumericValue(tmp.charAt(i));
+
+    public static boolean isIsogram(String str) {
+        str = str.toLowerCase();
+        for (int i = 0; i < str.length(); i++) {
+            String tmp = str.substring(i + 1);
+            if (tmp.indexOf(str.charAt(i)) != -1) {
+                return false;
+            }
         }
-        Arrays.sort(ints);
-        for (int i = 0; i < ints.length / 2; i++) {
-            Object temp = ints[i];
-            ints[i] = ints[ints.length - 1 - i];
-            ints[ints.length - 1 - i] = (int) temp;
-        }
-        String sss = "";
-        for (int anInt : ints) {
-            sss += Integer.toString(anInt);
-        }
-        return Integer.parseInt(sss);
+        return true;
     }
 
 }
