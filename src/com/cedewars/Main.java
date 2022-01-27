@@ -19,7 +19,7 @@ public class Main {
         for (int [] ints : stops) {
                 passNumber = passNumber + ints[0] - ints[1];
         }
-        return passNumber;
+        return stops.stream().mapToInt(n -> n[0]-n[1]).sum();
     }
 
 }
