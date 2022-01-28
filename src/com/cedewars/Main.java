@@ -1,37 +1,35 @@
 package com.cedewars;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        System.out.println(longestConsec(new String[]{"ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"}, 2));
-        System.out.println(longestConsec(new String[]{"it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"}, 0));
-        System.out.println(longestConsec(new String[]{"it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"}, 3));
-        System.out.println(longestConsec(new String[]{"itvayloxrp", "wkppqsztdkmvcuwvereiupccauycnjutlv", "vweqilsfytihvrzlaodfixoyxvyuyvgpck"}, 2));
-        System.out.println(longestConsec(new String[]{}, 3));
+        String s = "abcdef";
+        String s1 = "HelloWorld";
+        String s2 = "LovePizza";
+        System.out.println(Arrays.toString(solution(s)));
+        System.out.println(Arrays.toString(solution(s1)));
+        System.out.println(Arrays.toString(solution(s2)));
 
     }
 
-    public static String longestConsec(String[] strarr, int k) {
-        // your code
-        if ((strarr.length < k) || (k <= 0)) {
-            return "";
+    public static String[] solution(String s) {
+        //Write your code here
+        String[] result = null;
+        if (s.length() % 2 == 0) {
+            result = new String[s.length() / 2];
+        } else {
+            result = new String[(s.length() / 2) + 1];
         }
-        String max = "";
-        String tmp = "";
-        for (int i = 0; i < strarr.length; i++) {
-            tmp = strarr[i];
-            for (int j = i + 1, x = 1; (j < strarr.length) && (x < k); j++, x++) {
-                tmp += strarr[j];
-                if (max.length() < tmp.length()) {
-                    max = tmp;
-                }
-            }
-            if (max.length() < tmp.length()) {
-                max = tmp;
+        for (int i = 0; i < s.length(); i = i + 2) {
+            try {
+                result[i / 2] = Character.toString(s.charAt(i)) + Character.toString(s.charAt(i + 1));
+            } catch (IndexOutOfBoundsException e) {
+                result[i / 2] = Character.toString(s.charAt(i)) + Character.toString('_');
             }
         }
-        return max;
+        return result;
     }
-
 }
