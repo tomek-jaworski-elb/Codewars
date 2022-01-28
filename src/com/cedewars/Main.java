@@ -1,37 +1,38 @@
 package com.cedewars;
 
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        System.out.println(createPhoneNumber(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+        System.out.println(validParentheses("()"));
 
 
     }
 
-    public static String createPhoneNumber(int[] numbers) {
-        // Your code here!
-        StringBuilder result = new StringBuilder("(");
-        for (int i = 0; i < numbers.length; i++) {
-            if (i < 2) {
-                result.append(numbers[i]);
+
+    public static boolean validParentheses(String parens) {
+        //Put code below
+        int bracketClose = 0;
+        int bracketOpen = 0;
+        char[] letters = parens.toCharArray();
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] == '(') {
+                bracketOpen++;
+            } else if (letters[i] == ')') {
+                bracketClose++;
             }
-            if (i == 2) {
-                result.append(numbers[i]).append(") ");
-            }
-            if ((i >= 3) && (i < 5)) {
-                result.append(numbers[i]);
-            }
-            if (i == 5) {
-                result.append(numbers[i]).append("-");
-            }
-            if (i>5) {
-                result.append(numbers[i]);
+            if (bracketClose>bracketOpen) {
+                return false;
             }
         }
-        return result.toString();
+        if (bracketClose==bracketOpen)  {
+            return true;
+        } else {
+            return false;
+        }
     }
-
 
 }
