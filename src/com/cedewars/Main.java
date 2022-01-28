@@ -1,38 +1,34 @@
 package com.cedewars;
 
-
-import java.util.Arrays;
-
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        System.out.println(validParentheses("()"));
+        System.out.println(longestConsec(new String[]{"ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"}, 2));
 
 
     }
 
-
-    public static boolean validParentheses(String parens) {
-        //Put code below
-        int bracketClose = 0;
-        int bracketOpen = 0;
-        char[] letters = parens.toCharArray();
-        for (int i = 0; i < letters.length; i++) {
-            if (letters[i] == '(') {
-                bracketOpen++;
-            } else if (letters[i] == ')') {
-                bracketClose++;
+    public static String longestConsec(String[] strarr, int k) {
+        // your code
+        if ((strarr.length < k) || (k <= 0)) {
+            return "";
+        }
+        String max = "";
+        String tmp = "";
+        for (int i = 0; i < strarr.length; i++) {
+            tmp = strarr[i];
+            for (int j = i + 1, x = 1; (j < strarr.length) && (x < k); j++, x++) {
+                tmp += strarr[j];
+                if (max.length() < tmp.length()) {
+                    max = tmp;
+                }
             }
-            if (bracketClose>bracketOpen) {
-                return false;
+            if (max.length() < tmp.length()) {
+                max = tmp;
             }
         }
-        if (bracketClose==bracketOpen)  {
-            return true;
-        } else {
-            return false;
-        }
+        return max;
     }
 
 }
